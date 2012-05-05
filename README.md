@@ -1,20 +1,8 @@
-# dotfiles
+# Brad's dotfiles
 
 ## Installation dependencies
 
-### OSX
-
-* XCode (for build tools)
-* [Homebrew] (http://mxcl.github.com/homebrew/)
-  * git
-* [rvm] (https://rvm.io/rvm/install/)
-  * Ruby (MRI) 1.9.3
-
-### Linux (Debian)
-
-* apt-get install git
-* [rvm] (https://rvm.io/rvm/install/)
-  * Ruby (MRI) 1.9.3
+* rake (and thus ruby)
 
 ## Install
 
