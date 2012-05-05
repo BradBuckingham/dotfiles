@@ -1,0 +1,11 @@
+# Temporary files
+#################
+*.swp
+*~
+
+# OS generated files
+####################
+.DS_Store*
+Icon?
+ehthumbs.db
+Thumbs.db
