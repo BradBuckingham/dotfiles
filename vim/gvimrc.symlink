@@ -1,0 +1,2 @@
+set lines=64 columns=110                  " set the default window size for gvim
+set guioptions-=T                         " hide GVIM toolbar
