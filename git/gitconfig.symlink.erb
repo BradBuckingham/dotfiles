@@ -1,0 +1,18 @@
+# This is a GENERATED FILE. Do not edit it directly. Instead,
+# please edit the original file located here:
+#
+# <%= File.expand_path erb_file %>
+
+[user]
+	name = <%= print("[.gitconfig] Your Name: "); STDOUT.flush; STDIN.gets.chomp %>
+	email = <%= print("[.gitconfig] Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
+[alias]
+	co = checkout
+	br = branch
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+	excludesfile = <%= ENV['HOME'] %>/.gitignore
+	editor = vim
