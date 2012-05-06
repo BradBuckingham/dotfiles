@@ -67,7 +67,10 @@ def create_symlinks
         when 'B' then backup_all = true
         when 'S' then skip_all = true
         when 's' then next
-        else exit
+        when 'q' then exit
+        else
+          puts "Unrecognized command, quitting."
+          exit
         end
       end
 
@@ -108,15 +111,37 @@ def process_erbs
   FileUtils.mkdir_p generated_dir_name
 
   erb_files.each do |erb_file|
+
+    regenerate = false
+    generated_file_name = File.join generated_dir_name, File.basename(erb_file, ".erb")
+
+    if File.exists? generated_file_name
+      puts "GENERATED file already exists: #{generated_file_name}, what do you want to do?"
+      puts "[r]egenerate and overwrite, [l]eave existing file alone, or [q]uit"
+
+      case STDIN.gets.chomp
+      when 'r' then regenerate = true
+      when 'l' then next
+      when 'q' then exit
+      else
+        puts "Unrecognized command, quitting."
+        exit
+      end
+    end
+
+    if regenerate
+      puts "Regenerating #{generated_file_name}"
+    else
+      puts "Generated #{generated_file_name}"
+    end
+
     # Please the closure gods
     b = binding
 
-    generated_file_name = File.join generated_dir_name, File.basename(erb_file, ".erb")
     File.open(generated_file_name, "w") do |new_file|
       new_file.write ERB.new(IO.read(erb_file)).result(b)
     end
 
-    puts "Generated #{generated_file_name}"
   end
 end
 
@@ -134,3 +159,4 @@ def check_install_dest
     abort "Destination #{install_dest} doesn't exist!"
   end
 end
+
