@@ -1,6 +1,7 @@
 # Temporary files
 #################
 *.swp
+*.swo
 *~
 
 # OS generated files
