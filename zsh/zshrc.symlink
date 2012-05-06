@@ -4,6 +4,9 @@
 # shortcut to the dotfiles path is $DOTFILES
 export DOTFILES=$HOME/.dotfiles
 
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit && compinit
+
 # source every .zsh file in this rep
 for config_file ($DOTFILES/**/*.zsh) source $config_file
 
@@ -13,10 +16,3 @@ if [[ -a ~/.localrc ]]
 then
   source ~/.localrc
 fi
-
-# initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
-
-# load every completion after autocomplete loads
-for config_file ($DOTFILES/**/completion.sh) source $config_file
