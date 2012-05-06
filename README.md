@@ -24,11 +24,11 @@ Most of the borrowed ideas and code manifest themselves in the installation proc
 
 ```
 cd ~/.dotfiles
-git submodule add <git repo URL> bundle/<name of plugin>
+git submodule add <git repo URL> vim/vim.symlink/bundle/<name of plugin>
 git commit -m "Installed Vim plugin <plugin> as a submodule"
 ```
 
-*Source: [Drew Neil](http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/)'s fabulous Vimcasts*
+*Source: [Drew Neil's](http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/) fabulous Vimcasts*
 
 ### Updating a Vim plugin installed as a git submodule
 
@@ -38,7 +38,7 @@ git pull origin master
 git commit -m "Updated Vim plugin <plugin>"
 ```
 
-*Source: [Drew Neil](http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/)'s fabulous Vimcasts*
+*Source: [Drew Neil's](http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/) fabulous Vimcasts*
 
 ### Updating all Vim plugins installed as git submodules
 
@@ -47,4 +47,4 @@ git submodule foreach git pull origin master
 git commit -m "Updated all Vim plugins"
 ```
 
-*Source: [Drew Neil](http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/)'s fabulous Vimcasts*
+*Source: [Drew Neil's](http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/) fabulous Vimcasts*
