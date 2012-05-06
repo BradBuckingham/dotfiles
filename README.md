@@ -1,7 +1,10 @@
 # Brad's dotfiles
 
+These dotfiles are designed to work well in both OSX and Linux.
+
 ## Installation dependencies
 
+* git
 * rake (and thus ruby)
 
 ## Install
