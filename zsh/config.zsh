@@ -56,6 +56,19 @@ bindkey '^[[3~' delete-char
 # Do not exit on end-of-file. Require exit or logout, instead.
 setopt IGNORE_EOF
 
+# Don't run background jobs at lower priority.
+setopt NO_BG_NICE
+
+# Report  the  status of background and suspended jobs before exiting
+# a shell with job control; a second attempt to exit the shell will succeed.
+setopt CHECK_JOBS
+
+# Do not beep on an ambiguous completion.
+setopt NO_LIST_BEEP
+
+# Make 'cd' push the old directory onto the directory stack (visible by
+# issuing 'cd -<tab>')
+setopt AUTO_PUSHD
 
 # -----------------------------------------------------------------------------
 #  History
