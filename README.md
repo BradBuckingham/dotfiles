@@ -27,7 +27,7 @@ Most of the borrowed ideas and code manifest themselves in the installation proc
 
 1. Install these dotfiles ;)
 2. Switch to ZSH: `chsh -s /bin/zsh`
-3. Install (XCode CLI tools)[https://developer.apple.com/downloads]
+3. Install [XCode CLI tools](https://developer.apple.com/downloads)
 4. Install [homebrew](https://github.com/mxcl/homebrew/wiki/installation)
 5. Install [RVM](https://rvm.io/):
    * Install any dependencies listed in `rvm requirements`
