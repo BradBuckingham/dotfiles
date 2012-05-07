@@ -9,10 +9,10 @@ These dotfiles are designed to work well in both OSX and Linux.
 
 ## Install
 
-```
-git clone --recursive git://github.com/BradBuckingham/dotfiles ~/.dotfiles
-cd ~/.dotfiles
-rake install
+```bash
+$ git clone --recursive git://github.com/BradBuckingham/dotfiles ~/.dotfiles
+$ cd ~/.dotfiles
+$ rake install
 ```
 
 ## Thanks
@@ -22,6 +22,17 @@ Large portions of this repository borrow heavily from [Zach Holman](https://gith
 Most of the borrowed ideas and code manifest themselves in the installation process (and thus the Rakefile): I began with Zach's outstanding Rakefile and merged-in Ryan's support for ERB templates and identical file detection.
 
 ## Tips
+
+### My OSX setup (after a clean install of OSX)
+
+1. Install these dotfiles ;)
+2. Switch to ZSH: `chsh -s /bin/zsh`
+3. Install (XCode CLI tools)[https://developer.apple.com/downloads]
+4. Install [homebrew](https://github.com/mxcl/homebrew/wiki/installation)
+5. Install [RVM](https://rvm.io/):
+   * Install any dependencies listed in `rvm requirements`
+   * 1.9.3 MRI (make system default)
+
 
 ### Installing a new Vim plugin as a git submodule
 
