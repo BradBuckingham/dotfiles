@@ -1,3 +1,6 @@
-set lines=64 columns=110                  " set the default window size for gvim
-set guioptions-=T                         " hide GVIM toolbar
-set background=light                      " force light background
+" MacVim/gvim inherits most settings from the vimrc file. I like to
+" keep MacVim/gvim as close to terminal VIM as possible.
+set lines=64 columns=120                    " set the default window size for MacVim/gvim
+set guioptions-=T                           " hide MacVim/gvim toolbar
+set guioptions-=L                           " hide left scrollbar
+set background=light                        " force light background

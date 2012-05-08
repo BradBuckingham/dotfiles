@@ -2,6 +2,7 @@
 "  Preamble (these settings must come first)
 " -----------------------------------------------------------------------------
 set nocompatible                            " Behave more like VIM than VI, must be first!
+let mapleader=","                           " Use ',' instead of default '\'
 
 " Start Pathogen to load all plugins. Because Pathogen is included as a git
 " submodule (in the bundle directory), we must first tell VIM where to find
@@ -10,38 +11,44 @@ runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
 " The following settings must follow Pathogen's initialization
-syntax on                                   " Enable syntax highlighting (might not need this...)
+syntax on                                   " Enable syntax highlighting
 filetype plugin indent on                   " Enable file type detection and smart indenting
 
 
 " -----------------------------------------------------------------------------
 "  Main settings
 " -----------------------------------------------------------------------------
+colorscheme solarized                       " My (current) favorite colorscheme
+
+set cursorline                              " Highlight current line (color set by colorscheme)
+set gdefault                                " Substitute over whole line by default; 'g' flag now toggles this
 set history=1000                            " Number of things to remember in history.
-set ruler                                   " Ruler on (row, column pair is shown)
+set laststatus=2                            " Always show status line
+set nofoldenable                            " Disable automatic folding
+set nowrap                                  " Disable line wrapping (toggle keymap below)
 set number                                  " Line numbers on
+set ruler                                   " Ruler on (row, column pair is shown)
+set showmatch                               " Show matching brackets
+"set timeoutlen=100                          " Time to wait for possible key combination (e.g., <leader>c)
+
 set incsearch                               " Enable search-as-you-type (incremental search)
 set ignorecase                              " Enable case-insensitive searching (see smartcase comment)
 set smartcase                               " Use case-sensative searching if expression contains capital letter
-set showmatch                               " Show matching brackets
+
 set novisualbell                            " No screen flashing
 set noerrorbells                            " No noises
-set laststatus=2                            " Always show status line
+
 set mousehide                               " Hide mouse after chars typed
 set mouse=a                                 " Mouse works in all modes (insert, normal, etc)
-set nowrap                                  " Disable line wrapping
+
 set wildmenu                                " Enable tab-completion of commands in VIM (like bash)
 set wildignore=*~                           " Files to ignore when doing tab completion
-set cursorline                              " Highlight current line
-set gdefault                                " Substitute over whole line by default; 'g' flag now toggles this
-"set wrap                                    " Enable (visual) line wrapping
-"set linebreak                               " Wrap on whole-word boundaries
-"set timeoutlen=250                          " Time to wait after ESC (default causes an annoying delay)
 
-" Highlight tabs and eol with special characters and color (see keyboard shortcuts for toggle)
-set listchars=tab:▸\ ,eol:¬
-"highlight NonText guifg=#cccccc
-"highlight SpecialKey guifg=#cccccc
+set backspace=indent,eol,start              " Backspace over everything in insert mode
+set whichwrap+=h,l                          " In Normal mode, h and l should wrap (intuitive, no?)
+
+set listchars=tab:▸\ ,trail:·               " Which special characters do we care about
+set list                                    " Show special characters by default (toggle keymap below).
 
 " Vertical and horizontal scroll settings
 set scrolloff=3
@@ -59,7 +66,6 @@ set expandtab                               " Use spaces instead of tabs
 set smarttab                                " Align tabs (spaces - according to expandtab) into columns
 set autoindent                              " Use current line indent on next (new) line
 set copyindent                              " Copy the previous indentation on autoindenting
-set backspace=indent,eol,start              " Backspace over everything in insert mode
 
 " Cannot reliably set formatoptions because ftplugin usually
 " overrides this (see: http://peox.net/articles/vimconfig.html)
@@ -73,41 +79,21 @@ set backspace=indent,eol,start              " Backspace over everything in inser
 "  Keyboard shortcuts
 " -----------------------------------------------------------------------------
 
-" Use ',' instead of default '\'
-let mapleader=","
-
-" Quickly edit/reload VIMRC file
-nmap <silent> <leader>v :tabedit $MYVIMRC<CR>
-"nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
 " Better window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" Copy/paste for Ubuntu (might need to change the '+' to a '*' for other OS's)
-map <leader>y "+y
-map <leader>Y "+yy
-map <leader>p "+gp
-map <leader>P "+gP
-
-" Swap implementations of the ` and ' jump markers, by default ' jumps
-" to the marked link, while ` jumps to the marked line and column (more
-" useful). Use nnoremap so that VIM doesn't look for further key mappings for
-" the RHS argument.
-"nnoremap ' `
-"nnoremap ` '
-
 " Toggle NERDTree
 map <silent> <C-n> :NERDTreeToggle<CR>
 
-" Make VIM use standard Regex's
-"nnoremap / /\v
-"vnoremap / /\v
-
-" Change/substitute word under cursor (TODO: make this work in visual select mode)
+" Change/substitute word under cursor
 nnoremap <leader>s :%s/\<<C-r><C-w>\>//c<Left><Left>
+
+" Change/substitute visual selection (overwrites named
+" register 'v', so ya...)
+vnoremap <leader>s "vy:%s/\<<C-r>v\>//c<left><left>
 
 " Toggle listchars
 map <silent> <leader>l :set list!<CR>
@@ -127,16 +113,25 @@ vmap <A-k> x<Up>P`[V`]
 " Toggle wrapping
 noremap <silent> <leader>w :call ToggleWrap()<CR>
 
+" Copy/paste for Ubuntu (might need to change the '+' to a '*' for other OS's)
+map <leader>y "+y
+map <leader>Y "+yy
+map <leader>p "+gp
+map <leader>P "+gP
 
-" -----------------------------------------------------------------------------
-"  Folding
-" -----------------------------------------------------------------------------
-set nofoldenable                            " Disable automatic folding (see auto-commands)
-"set foldcolumn=2                            " Add a fold column
-"set foldmethod=marker                       " Use triple-{ style fold markers
-"set foldnestmax=3                           " Deepest fold is 3 levels
-"set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
-                                            " Which commands trigger auto-unfold
+" Swap implementations of the ` and ' jump markers. By default ' jumps
+" to the marked link, while ` jumps to the marked line and column (more
+" useful). Use nnoremap so that VIM doesn't look for further key mappings for
+" the RHS argument.
+nnoremap ' `
+nnoremap ` '
+
+" F1 is too close to ESC; plus help is simply ':help <something>'
+nmap <F1> <ESC>
+
+" Make VIM use standard Regex's
+"nnoremap / /\v
+"vnoremap / /\v
 
 
 " -----------------------------------------------------------------------------
@@ -145,13 +140,6 @@ set nofoldenable                            " Disable automatic folding (see aut
 if has("autocmd")
   " On any file-open, scroll to last-edit position
   autocmd BufReadPost * call MoveToLastPos()
-
-  " On opening the .vimrc, close all folds
-  "autocmd BufRead .vimrc set foldenable
-
-  " Start NERDTree
-  "autocmd VimEnter * NERDTree
-  "autocmd VimEnter * wincmd p
 endif
 
 
@@ -168,7 +156,6 @@ function! ToggleWrap()
   if &wrap
     echo "Wrap OFF"
     setlocal nowrap nolinebreak
-    "set virtualedit=all
     silent! nunmap <buffer> <Up>
     silent! nunmap <buffer> k
     silent! nunmap <buffer> <Down>
@@ -184,8 +171,6 @@ function! ToggleWrap()
   else
     echo "Wrap ON"
     setlocal wrap linebreak nolist
-    "set virtualedit=
-    "setlocal display+=lastline
     noremap  <buffer> <silent> <Up>   gk
     noremap  <buffer> <silent> k      gk
     noremap  <buffer> <silent> <Down> gj
