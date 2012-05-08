@@ -1,18 +1,25 @@
-# Original source:
-# https://github.com/holman/dotfiles/blob/master/zsh/zshrc.symlink
-
-# shortcut to the dotfiles path is $DOTFILES
+# $DOTFILES: path to dotfiles in $HOME
+# TODO: Rakefile allows installing in any location...
 export DOTFILES=$HOME/.dotfiles
 
+# load local zsh settings (i.e., not kept in dotfiles repository)
+# _before_ anything else is loaded
+if [[ -a ~/.zshrc.before ]]
+then
+  source ~/.zshrc.before
+fi
+
 # initialize autocomplete here, otherwise functions won't be loaded
+# TODO: guard around this line, it's possible compinit was already
+# loaded in .zshrc.before
 autoload -U compinit && compinit
 
-# source every .zsh file in this rep
+# source every .zsh file in the dotfiles repository
 for config_file ($DOTFILES/**/*.zsh) source $config_file
 
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
-if [[ -a ~/.localrc ]]
+# load local zsh settings (i.e., not kept in dotfiles repository)
+# _after_ everything else is loaded
+if [[ -a ~/.zshrc.after ]]
 then
-  source ~/.localrc
+  source ~/.zshrc.after
 fi

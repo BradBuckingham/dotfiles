@@ -23,6 +23,10 @@ Most of the borrowed ideas and code manifest themselves in the installation proc
 
 ## Tips
 
+### Local overrides (not stored in the repository)
+
+* zshrc: `~/.zshrc.before` and `~/.zshrc.after`
+
 ### My OSX setup (after a clean install of OSX)
 
 1. Install these dotfiles ;)
