@@ -12,7 +12,7 @@ fi
 # initialize autocomplete here, otherwise functions won't be loaded
 # TODO: guard around this line, it's possible compinit was already
 # loaded in .zshrc.before
-autoload -U compinit && compinit
+autoload -U compinit; compinit
 
 # source every .zsh file in the dotfiles repository
 for config_file ($DOTFILES/**/*.zsh) source $config_file

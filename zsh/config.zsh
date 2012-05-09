@@ -94,6 +94,27 @@ setopt HIST_REDUCE_BLANKS
 # immediately executed.
 setopt HIST_VERIFY
 
+# Save  each  command's beginning timestamp (in seconds since the epoch) and
+# the duration (in seconds) to the history file. A little extra information
+# can't hurt...
+setopt EXTENDED_HISTORY
+
+# Normally (without this option) zsh appends a shell's complete local command
+# history to $HISTFILE only on shell exit. Thus $HISTFILE doesn't contain
+# commands from currently running shells. Since a new shell's local history is
+# initialized with the contents of $HISTFILE, the local history won't contain
+# commands from currently running shells.
+#
+# The INC_APPEND_HISTORY option changes this -- it tells zsh to append commands
+# to $HISTFILE as soon as they're entered. Therefore, with this option enabled,
+# when a new shell's local history is initialized with $HISTFILE, it will
+# contain commands entered from currently running shells. The SHARE_HISTORY
+# option takes this even further by (basically) causing a shell's local history
+# to continually import new commands from $HISTFILE instead of just at startup.
+# I'm not crazy about sharing history between currently running shells, so the
+# INC_APPEND_HISTORY option is as far as I take it...
+setopt INC_APPEND_HISTORY
+
 
 # -----------------------------------------------------------------------------
 #  Completion
