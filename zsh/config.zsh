@@ -73,9 +73,15 @@ setopt AUTO_PUSHD
 # -----------------------------------------------------------------------------
 #  History
 # -----------------------------------------------------------------------------
+
+# zsh parameters (name=value pairs) are described in detail in `man zshparam`.
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+
+# Maximum number of commands to save in local (per shell, in-memory) history
+HISTSIZE=15000
+
+# Maximum numer of commands to save in $HISTFILE
+SAVEHIST=15000
 
 # Don't overwrite history, append
 setopt APPEND_HISTORY
