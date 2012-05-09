@@ -1,5 +1,10 @@
 alias gs='git status --short --branch'
+
+alias gp='git push'
+
 alias ga='git add'
+alias gau='git add -u'
+
 alias gc='git commit'
 alias gcm='git commit -m '
 
