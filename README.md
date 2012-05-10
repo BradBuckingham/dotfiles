@@ -67,4 +67,11 @@ $ git submodule foreach git pull origin master
 $ git commit -m "Updated all Vim plugins"
 ```
 
-_Source: [Drew Neil's](http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/) fabulous Vimcasts_
+### Removing a git submodule
+
+1. Delete the relevant line from the `.gitmodules` file.
+2. Delete the relevant section from `.git/config`.
+3. Run `git rm --cached path_to_submodule` (no trailing slash).
+4. Commit and delete the now untracked submodule files.
+
+_Source: [Stack Overflow](http://stackoverflow.com/a/1260982)_
