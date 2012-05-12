@@ -10,6 +10,11 @@ let mapleader=","                           " Use ',' instead of default '\'
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
+" Tell pathogen to run `:helptags` on each directory in `runtimepath`.
+" Without this, documentation for pathogen-loaded-plugins is unavailable
+" via `:help`
+call pathogen#helptags()
+
 " The following settings must follow Pathogen's initialization
 syntax on                                   " Enable syntax highlighting
 filetype plugin indent on                   " Enable file type detection and smart indenting
