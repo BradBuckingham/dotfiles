@@ -1,5 +1,5 @@
 " -----------------------------------------------------------------------------
-"  Preamble (these settings must come first)
+"  Preamble (these settings should come first)
 " -----------------------------------------------------------------------------
 set nocompatible                            " Behave more like VIM than VI, must be first!
 let mapleader=","                           " Use ',' instead of default '\'
@@ -18,6 +18,17 @@ call pathogen#helptags()
 " The following settings must follow Pathogen's initialization
 syntax on                                   " Enable syntax highlighting
 filetype plugin indent on                   " Enable file type detection and smart indenting
+
+" Load the built-in version of the matchit plugin. This plugin extends
+" '%'-matching to multi-character pairs. For example, in Ruby this plugin
+" makes it possible to move between a block's 'do' and 'end' delimiters. At
+" some point in the future, it might be worth downloading the latest version
+" of this plugin as the version included with Vim may be out of date.
+"
+" According to the docs, the command 'runtime file_to_load' fails silently if
+" file_to_load doesn't exist. Thus, this setting shouldn't affect older
+" versions of Vim (less than 6.0) which may not include the matchit plugin.
+runtime macros/matchit.vim
 
 
 " -----------------------------------------------------------------------------
