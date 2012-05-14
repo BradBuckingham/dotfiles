@@ -45,6 +45,7 @@ set nowrap                                  " Disable line wrapping (toggle keym
 set number                                  " Line numbers on
 set ruler                                   " Ruler on (row, column pair is shown)
 set showmatch                               " Show matching brackets
+set splitbelow                              " Open split below (instead of above) current window
 "set timeoutlen=100                          " Time to wait for possible key combination (e.g., <leader>c)
 
 set incsearch                               " Enable search-as-you-type (incremental search)
