@@ -9,7 +9,6 @@ task :install do
   process_erbs
   create_symlinks
 end
-task :default => :install
 
 desc "Uninstall symlinked dotfiles from ENV['HOME'] or ENV['DOTFILES_HOME']"
 task :uninstall do
@@ -34,6 +33,32 @@ task :uninstall do
   end
 end
 
+desc "Get any updates from the dotfiles repo on GitHub"
+task :update do
+  # check that we've got a clean working directory. Git can't pull
+  # updates with a dirty working directory.
+  unless `git status --porcelain`.empty?
+    puts "Can't proceed: the working directory is dirty. Please stash, "
+    puts "commit, or reset any changes listed in `git status`."
+
+    exit 1
+  end
+
+  puts "Pulling latest changes from GitHub..."
+  `git pull > /dev/null`
+
+  puts "Synchronizing git submodule URLs..."
+  `git submodule sync > /dev/null`
+
+  puts "Fetching any newly added git submodules..."
+  `git submodule update --init > /dev/null`
+end
+
+task :default => [:update, :install]
+
+#####################################################################
+# Helpers
+#####################################################################
 def create_symlinks
   skip_all = false
   overwrite_all = false

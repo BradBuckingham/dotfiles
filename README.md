@@ -10,9 +10,9 @@ These dotfiles are designed to work well in both OSX and Linux.
 ## Install
 
 ```bash
-$ git clone --recursive git://github.com/BradBuckingham/dotfiles ~/.dotfiles
+$ git clone git://github.com/BradBuckingham/dotfiles ~/.dotfiles
 $ cd ~/.dotfiles
-$ rake install
+$ rake
 ```
 
 ## Thanks
