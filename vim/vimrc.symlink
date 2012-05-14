@@ -84,6 +84,10 @@ set copyindent                              " Copy the previous indentation on a
 "  Keyboard shortcuts
 " -----------------------------------------------------------------------------
 
+" Fugitive (git) mappings
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gd :Gdiff<CR>
+
 " Better window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
