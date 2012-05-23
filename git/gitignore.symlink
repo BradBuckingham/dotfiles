@@ -3,6 +3,9 @@
 *.swp
 *.swo
 *~
+*.un~
+Session.vim
+.netrwhist
 
 # OS generated files
 ####################
