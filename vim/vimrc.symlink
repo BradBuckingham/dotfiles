@@ -96,6 +96,13 @@ set copyindent                              " Copy the previous indentation on a
 "  Keyboard shortcuts
 " -----------------------------------------------------------------------------
 
+" F1 is too close to ESC; plus help is simply ':help <something>'. I have to
+" use `imap` for Insert mode because `map` works only for Normal and Visual
+" modes. See `:help map` for more information (use Ctrl-] to follow
+" quick-refs and Ctrl-o to move to previous location).
+map <F1> <ESC>
+imap <F1> <ESC>
+
 " Fugitive (git) mappings
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gd :Gdiff<CR>
@@ -146,9 +153,6 @@ map <leader>P "+gP
 " the RHS argument.
 nnoremap ' `
 nnoremap ` '
-
-" F1 is too close to ESC; plus help is simply ':help <something>'
-nmap <F1> <ESC>
 
 " Make VIM use standard Regex's
 "nnoremap / /\v
