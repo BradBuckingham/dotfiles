@@ -3,20 +3,26 @@
 # -----------------------------------------------------------------------------
 autoload -U colors && colors
 
+# With this zsh option endabled, PROMPT and RPROMPT should be enclosed in
+# single quotes so their inner expressions are re-evaluated each time they're
+# used. Fixes issue where zsh subshells (e.g., vim's :sh command) had repeated
+# strings in RPROMPT.
+setopt promptsubst
+
 # If the current shell was started within vim by the :sh command, the
 # VIMRUNTIME environment variable will be defined (its value is meaningless,
 # what matters is that it's not null). The Bash parameter substitution used
 # below checks if VIMRUNTIME is defined -- if it's defined then "[VIM] " is
 # prepended to PROMPT. Otherwise, nothing is prepended.
 # TODO: move this vim-specific feature to the vim directory
-PROMPT="${VIMRUNTIME+[VIM] }%{$fg[yellow]%}$%{$reset_color%} "
+PROMPT='${VIMRUNTIME+[VIM] }%{$fg[yellow]%}$%{$reset_color%} '
 
 # I thought "%~" would print the current directory with "~" replacing "$HOME"
 # but it turns out that "%~" also replaces substrings of the current path with
 # any matching environment variables. See
 # http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/#current-directory
 # for a better explanation of the problem and the recommended fix used below.
-RPROMPT="%{$fg_bold[cyan]%}%${PWD/#$HOME/~}%{$reset_color%}"
+RPROMPT='%{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}'
 
 
 # -----------------------------------------------------------------------------
