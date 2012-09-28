@@ -35,6 +35,9 @@ runtime macros/matchit.vim
 "  Main settings
 " -----------------------------------------------------------------------------
 colorscheme solarized                       " My (current) favorite colorscheme
+set background=dark                         " Force dark background in terminal. GVIM
+                                            " has light background due to setting in
+                                            " gvimrc file.
 
 set cursorline                              " Highlight current line (color set by colorscheme)
 set gdefault                                " Substitute over whole line by default; 'g' flag now toggles this
