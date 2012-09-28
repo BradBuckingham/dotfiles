@@ -180,7 +180,13 @@ endfunction
 function! ToggleWrap()
   if &wrap
     echo "Wrap OFF"
-    setlocal nowrap nolinebreak
+
+    setlocal nowrap
+    setlocal nolinebreak
+
+    " re-enable list (was disabled below when wrap was enabled)
+    setlocal list
+
     silent! nunmap <buffer> <Up>
     silent! nunmap <buffer> k
     silent! nunmap <buffer> <Down>
@@ -193,9 +199,16 @@ function! ToggleWrap()
     silent! iunmap <buffer> <Down>
     silent! iunmap <buffer> <Home>
     silent! iunmap <buffer> <End>
+
   else
     echo "Wrap ON"
-    setlocal wrap linebreak nolist
+
+    setlocal wrap
+    setlocal linebreak
+
+    " linebreak cannot be enabled while list is enabled
+    setlocal nolist
+
     noremap  <buffer> <silent> <Up>   gk
     noremap  <buffer> <silent> k      gk
     noremap  <buffer> <silent> <Down> gj
