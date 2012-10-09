@@ -12,7 +12,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
   # Load Solarized-inspired ls color scheme via coreutils' dircolors command.
   # Eval'ing the result of dircolors sets LS_COLORS to the chosen color scheme.
-  eval `dircolors $DOTFILES/system/colors/dircolors.ansi-dark`
+  eval `dircolors $DOTFILES/system/colors/dircolors.256dark`
 fi
 
 # Now that LS_COLORS is set, we can tell zsh to use those colors when
