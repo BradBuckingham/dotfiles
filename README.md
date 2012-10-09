@@ -40,6 +40,10 @@ Most of the borrowed ideas and code manifest themselves in the installation proc
 
 * zshrc: `~/.zshrc.before` and `~/.zshrc.after`
 
+### Convert Linux's gnome-terminal to Solarized color palette
+
+* Edit the default profile's 16 colors (in [this](http://curtisfree.com/blog/2012/03/24/convert_gnome_terminal_colors_x_resources#get-your-colors-from-gnome-terminal) order) to match the [Solarized palette](https://github.com/altercation/solarized/blob/master/xresources-colors-solarized/Xresources)
+
 ### My OSX setup (after a clean install of OSX)
 
 1. Install [iTerm2](http://code.google.com/p/iterm2/)
