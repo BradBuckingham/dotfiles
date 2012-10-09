@@ -15,14 +15,14 @@ setopt promptsubst
 # below checks if VIMRUNTIME is defined -- if it's defined then "[VIM] " is
 # prepended to PROMPT. Otherwise, nothing is prepended.
 # TODO: move this vim-specific feature to the vim directory
-PROMPT='${VIMRUNTIME+[VIM] }%{$fg[yellow]%}$%{$reset_color%} '
+PROMPT='${VIMRUNTIME+[VIM] }%F{yellow}$%f '
 
 # I thought "%~" would print the current directory with "~" replacing "$HOME"
 # but it turns out that "%~" also replaces substrings of the current path with
 # any matching environment variables. See
 # http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/#current-directory
 # for a better explanation of the problem and the recommended fix used below.
-RPROMPT='%{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}'
+RPROMPT='%F{cyan}${PWD/#$HOME/~}%f'
 
 
 # -----------------------------------------------------------------------------
