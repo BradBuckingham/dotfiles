@@ -82,6 +82,12 @@ bindkey -e
 # Fix the delete key (fn-delete for us Mac people)
 bindkey '^[[3~' delete-char
 
+# ZSH feature to temporarily clear the current command, providing you with an
+# empty prompt to run another command, and then replacing the prior contents
+# into the next prompt. More details here:
+# https://nathangrigg.com/2014/04/zsh-push-line-or-edit
+bindkey '^b' push-line
+
 
 # -----------------------------------------------------------------------------
 #  ZSH Options
