@@ -10,7 +10,7 @@ These dotfiles are designed to work well in both OSX and Linux.
 ## Install
 
 ```bash
-$ git clone git://github.com/BradBuckingham/dotfiles ~/.dotfiles
+$ git clone git@github.com:BradBuckingham/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
 $ ruby setup.rb
 ```
