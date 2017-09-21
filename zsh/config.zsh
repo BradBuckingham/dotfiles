@@ -9,20 +9,41 @@ autoload -U colors && colors
 # strings in RPROMPT.
 setopt promptsubst
 
+# Conditionally color the exit code of the previous command to be RED if the
+# exit code is non-zero. Otherwise, if the exit color is zero, don't alter its
+# color.
+local exit_code="%(?,%?,%{$fg[red]%}%?%{$reset_color%})"
+
+# This prompt format was inspired by the "ys" theme in the "oh-my-zsh" package.
+# Here's the format (the '|' character indicates the left side of the terminal,
+# it is not actually printed in the prompt).
+#
+#     |<empty-line>
+#     |# <current-working-directory> [<iso8601-timestamp>] [<previous-command-exit-code>] [VIM]
+#     |$ <cursor>
+#
 # If the current shell was started within vim by the :sh command, the
 # VIMRUNTIME environment variable will be defined (its value is meaningless,
 # what matters is that it's not null). The Bash parameter substitution used
-# below checks if VIMRUNTIME is defined -- if it's defined then "[VIM] " is
-# prepended to PROMPT. Otherwise, nothing is prepended.
+# below checks if VIMRUNTIME is defined -- iff it's defined then "[VIM]" is
+# appended to PROMPT.
 # TODO: move this vim-specific feature to the vim directory
-PROMPT='${VIMRUNTIME+[VIM] }%F{yellow}$%f '
+PROMPT="
+%{$fg[gray]%}#%{$reset_color%} \
+%{$fg[white]%}%~%{$reset_color%}\
+ \
+%{$fg[gray]%}[%D{%Y-%m-%d %H:%M:%S}] [$exit_code] \
+${VIMRUNTIME+[VIM]}
+%{$fg[yellow]%}$ %{$reset_color%}"
 
+# NOTE: The Prompt I'm using above does away with the need for a right-aligned,
+# current-working-directory. But I'm leaving this here for future reference.
 # I thought "%~" would print the current directory with "~" replacing "$HOME"
 # but it turns out that "%~" also replaces substrings of the current path with
 # any matching environment variables. See
 # http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/#current-directory
 # for a better explanation of the problem and the recommended fix used below.
-RPROMPT='%F{cyan}${PWD/#$HOME/~}%f'
+#RPROMPT='%F{cyan}${PWD/#$HOME/~}%f'
 
 
 # -----------------------------------------------------------------------------
