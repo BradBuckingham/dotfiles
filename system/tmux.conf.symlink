@@ -1,3 +1,9 @@
+# Sane handling of forwarded ssh-agents (when we are tmux'ing over an
+# ssh-agent-forwarded ssh session). Note, this works in concert with config
+# in ~/.ssh/rc which creates and/or updates the ~/.ssh/ssh_auth_sock symlink.
+set-environment -g 'SSH_AUTH_SOCK' ~/.ssh/ssh_auth_sock
+set -g update-environment -r
+
 # Better keyboard shortcuts for splitting a window vertically or horizontally.
 bind - split-window -v
 bind | split-window -h

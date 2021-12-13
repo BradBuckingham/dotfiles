@@ -1,5 +1,6 @@
 require 'erb'
 require 'fileutils'
+require 'pathname'
 
 class Setup
   # Symlink dotfiles to ENV['HOME'] or ENV['DOTFILES_HOME']
@@ -16,8 +17,7 @@ class Setup
     check_install_dest
 
     Dir.glob("**/*{.symlink}").each do |link_dest|
-      file_name = File.basename link_dest, ".symlink"
-      link_src_full_path = File.join install_dest, ".#{file_name}"
+      link_src_full_path = get_symlink_location link_dest, false
 
       # Remove all symlinks created during installation
       if File.symlink? link_src_full_path
@@ -70,7 +70,7 @@ class Setup
       file_name = File.basename link_dest, ".symlink"
 
       # Symlink direction: link_src -> link_dest
-      link_src_full_path = File.join install_dest, ".#{file_name}"
+      link_src_full_path = get_symlink_location link_dest, true
       link_dest_full_path = File.expand_path link_dest
 
       # Handle pre-existing dotfiles (create backup, overwrite, etc)
@@ -181,6 +181,29 @@ class Setup
       abort "Destination #{install_dest} isn't writable!" unless File.writable? install_dest
     else
       abort "Destination #{install_dest} doesn't exist!"
+    end
+  end
+
+  def get_symlink_location(link_dest, create_missing_parent_dirs)
+    normal_location = File.join install_dest, ".#{File.basename link_dest, '.symlink'}"
+
+    if File.file?(link_dest) && (override_match = File.read(link_dest).match(/^#\s*DOTFILES_SYMLINK_LOCATION:\s*(\S+)\s*$/))
+      override_location = override_match.captures[0].gsub('${DOTFILES_HOME}', install_dest)
+      puts "A symlink location override exists for dotfile '#{link_dest}': using '#{override_location}' instead of '#{normal_location}'"
+
+      override_location_as_path = Pathname.new override_location
+
+      # Ensure that override_location is an absolute path
+      raise "Overridden symlink location must be an absolute path" unless override_location_as_path.absolute?
+
+      if create_missing_parent_dirs
+        puts "Creating any missing parent directores for symlink override path #{override_location}"
+        override_location_as_path.dirname.mkpath
+      end
+
+      return override_location
+    else
+      return normal_location
     end
   end
 end

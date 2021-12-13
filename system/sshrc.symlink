@@ -1,0 +1,7 @@
+# BEGIN Dotfiles config
+#   DOTFILES_SYMLINK_LOCATION: ${DOTFILES_HOME}/.ssh/rc
+# END Dotfiles config
+
+if [ ! -S ~/.ssh/ssh-auth-sock ] && [ -S "$SSH_AUTH_SOCK" ]; then
+  ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
+fi

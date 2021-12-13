@@ -29,7 +29,7 @@ local exit_code="%(?,%?,%{$fg[red]%}%?%{$reset_color%})"
 # appended to PROMPT.
 # TODO: move this vim-specific feature to the vim directory
 PROMPT="
-%{$fg[gray]%}#%{$reset_color%} \
+%{$fg[gray]%}${PROMPT_PREFIX:-#}%{$reset_color%} \
 %{$fg[white]%}%~%{$reset_color%}\
  \
 %{$fg[gray]%}[%D{%Y-%m-%d %H:%M:%S}] [$exit_code] \
