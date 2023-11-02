@@ -9,10 +9,16 @@ autoload -U colors && colors
 # strings in RPROMPT.
 setopt promptsubst
 
+# Defining some color names used in the PROMPT configuration (below)
+local gray="#839596"
+local white="#ffffff"
+local yellow="#b58901"
+local red="#ff0000"
+
 # Conditionally color the exit code of the previous command to be RED if the
 # exit code is non-zero. Otherwise, if the exit color is zero, don't alter its
 # color.
-local exit_code="%(?,%?,%{$fg[red]%}%?%{$reset_color%})"
+local exit_code="%(?,%?,%F{$red}%?%{$reset_color%})"
 
 # This prompt format was inspired by the "ys" theme in the "oh-my-zsh" package.
 # Here's the format (the '|' character indicates the left side of the terminal,
@@ -29,12 +35,12 @@ local exit_code="%(?,%?,%{$fg[red]%}%?%{$reset_color%})"
 # appended to PROMPT.
 # TODO: move this vim-specific feature to the vim directory
 PROMPT="
-%{$fg[gray]%}${PROMPT_PREFIX:-#}%{$reset_color%} \
-%{$fg[white]%}%~%{$reset_color%}\
+%F{$gray}${PROMPT_PREFIX:-#}%F{reset} \
+%F{$white}%~%F{reset}\
  \
-%{$fg[gray]%}[%D{%Y-%m-%d %H:%M:%S}] [$exit_code] \
+%F{$gray}[%D{%Y-%m-%d %H:%M:%S}] [$exit_code] \
 ${VIMRUNTIME+[VIM]}
-%{$fg[yellow]%}$ %{$reset_color%}"
+%F{$yellow}$ %F{reset}"
 
 # NOTE: The Prompt I'm using above does away with the need for a right-aligned,
 # current-working-directory. But I'm leaving this here for future reference.
