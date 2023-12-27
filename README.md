@@ -46,16 +46,11 @@ Most of the borrowed ideas and code manifest themselves in the installation proc
 
 ### My OSX setup (after a clean install of OSX)
 
-1. Install [iTerm2](http://code.google.com/p/iterm2/)
-   * Install [Solarized's (dark) color preset](http://ethanschoonover.com/solarized) (contained in the Solarized download.
-2. Install these dotfiles ;)
-3. Switch to ZSH: `chsh -s /bin/zsh`
-4. Install [XCode CLI tools](https://developer.apple.com/downloads)
-5. Install [homebrew](https://github.com/mxcl/homebrew/wiki/installation)
-6. Install [RVM](https://rvm.io/):
-   * Install any dependencies listed in `rvm requirements`
-   * 1.9.3 MRI (make system default)
-
+1. Install [iTerm2](https://iterm2.com/)
+2. Install XCode CLI tools (includes git, etc): `sudo xcode-select`
+3. Install these dotfiles ;)
+4. Switch to ZSH: `chsh -s /bin/zsh`
+5. Install [homebrew](https://brew.sh/)
 
 ### Installing a new Vim plugin as a git submodule
 
